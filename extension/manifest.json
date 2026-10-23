@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Slack & Zoom Redirect Closer",
+  "version": "1.4",
+  "description": "Closes leftover Slack or Zoom tabs after the desktop app opens. Chosen Slack workspaces open in the browser instead.",
+  "permissions": ["storage"],
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_title": "Slack workspaces",
+    "default_popup": "options.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://*.slack.com/*"],
+      "exclude_matches": ["https://app.slack.com/*"],
+      "js": ["routing.js", "content.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://*.zoom.us/j/*",
+        "https://*.zoom.us/s/*",
+        "https://*.zoom.us/w/*",
+        "https://*.zoom.us/my/*",
+        "https://zoom.us/j/*",
+        "https://zoom.us/s/*",
+        "https://zoom.us/w/*",
+        "https://zoom.us/my/*"
+      ],
+      "js": ["content-zoom.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

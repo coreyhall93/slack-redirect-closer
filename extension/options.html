@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Slack workspaces</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      width: 340px;
+      font: 13px/1.4 ui-sans-serif, system-ui, sans-serif;
+      color: light-dark(#1d1d1f, #f5f5f7);
+      background: light-dark(#fff, #1c1c1e);
+    }
+    header, main, footer { padding: 14px 16px; }
+    header { padding-bottom: 0; }
+    h1 { font-size: 15px; font-weight: 650; margin: 0 0 6px; }
+    header p, footer, .empty, .hint { margin: 0; color: light-dark(#6e6e73, #a1a1a6); }
+    ul { list-style: none; margin: 12px 0 0; padding: 0; }
+    li { padding: 10px 0; border-top: 1px solid light-dark(#ececec, #2c2c2e); }
+    .top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+    .host { font-weight: 650; overflow-wrap: anywhere; }
+    .remove {
+      border: 0;
+      background: transparent;
+      color: light-dark(#6e6e73, #a1a1a6);
+      font: inherit;
+      cursor: pointer;
+      padding: 0;
+    }
+    .choice {
+      display: flex;
+      margin-top: 8px;
+      border: 1px solid light-dark(#d2d2d7, #3a3a3c);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .choice button {
+      flex: 1;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      padding: 6px 8px;
+      cursor: pointer;
+    }
+    .choice button[aria-pressed="true"] {
+      background: light-dark(#1d1d1f, #f5f5f7);
+      color: light-dark(#fff, #1d1d1f);
+    }
+    form { display: flex; gap: 8px; margin-top: 12px; }
+    input {
+      flex: 1;
+      min-width: 0;
+      font: inherit;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid light-dark(#d2d2d7, #3a3a3c);
+      background: transparent;
+      color: inherit;
+    }
+    form button {
+      font: inherit;
+      border: 0;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      background: light-dark(#1d1d1f, #f5f5f7);
+      color: light-dark(#fff, #1d1d1f);
+    }
+    .error { margin: 8px 0 0; color: light-dark(#b42318, #ffb4ab); }
+    footer { padding-top: 4px; }
+    details { margin-top: 10px; }
+    summary {
+      width: fit-content;
+      cursor: pointer;
+      color: light-dark(#6e6e73, #a1a1a6);
+      font-size: 12px;
+    }
+    details[open] summary { margin-bottom: 8px; }
+    .guide { color: light-dark(#6e6e73, #a1a1a6); font-size: 12px; }
+    .guide h2 { color: inherit; font-size: 12px; margin: 10px 0 3px; }
+    .guide p { margin: 0; }
+    .guide ol { margin: 4px 0 0; padding-left: 18px; }
+    .guide li { border: 0; padding: 2px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Slack workspaces</h1>
+    <p>Desktop closes the leftover tab after the app opens. Browser keeps that workspace in your browser.</p>
+  </header>
+  <main>
+    <ul id="list"></ul>
+    <p class="empty" id="empty" hidden>No workspaces yet. Open a Slack link, or add one.</p>
+    <form id="add">
+      <input id="workspace" type="text" autocomplete="off" spellcheck="false" placeholder="a8c or a8c.slack.com" aria-label="Workspace">
+      <button type="submit">Add</button>
+    </form>
+    <p class="error" id="error" hidden></p>
+  </main>
+  <footer>
+    <div>Zoom join tabs still close after the desktop app opens.</div>
+    <details>
+      <summary>How to use</summary>
+      <div class="guide">
+        <h2>Slack workspaces</h2>
+        <p>Choose <strong>Desktop</strong> to close the redirect tab after Slack opens, or <strong>Browser</strong> to keep that workspace in the browser. New workspaces appear after you open a Slack link, or you can add one above. Choices are saved separately in each browser profile.</p>
+        <h2>Zoom</h2>
+        <p>Join tabs close when Zoom Workplace opens. Choose “Join from browser” before the short delay ends to keep the meeting in the browser.</p>
+        <h2>Install or update</h2>
+        <ol>
+          <li>Open your browser’s extensions page (usually <code>chrome://extensions</code>).</li>
+          <li>Enable Developer mode and choose <strong>Load unpacked</strong>.</li>
+          <li>Select this extension’s <code>extension</code> folder. After an update, reload its card.</li>
+        </ol>
+      </div>
+    </details>
+  </footer>
+  <script src="routing.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
