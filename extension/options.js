@@ -36,7 +36,7 @@ async function render() {
   const { seenSlack, slackRouting } = await load();
   const hosts = [...seenSlack].sort((a, b) => a.localeCompare(b));
   empty.hidden = hosts.length > 0;
-  list.replaceChildren(...hosts.map((host) => row(host, routing[host] === "browser" ? "browser" : "desktop")));
+  list.replaceChildren(...hosts.map((host) => row(host, slackRouting[host] === "browser" ? "browser" : "desktop")));
 }
 
 function row(host, mode) {
